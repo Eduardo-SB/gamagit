@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+function App(props) {
+  const [user, setUser] = useState('');
+
+  function handleSearch(){
+    // console.log('etet')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>{ user }</h1>
+      <input className="userInput" placeholder="User" value={user} onChange={e => setUser(e.target.value)} />
+      <button type="button" onClick={handleSearch}>Search</button>
+    </>
   );
 }
 
