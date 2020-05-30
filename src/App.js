@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function App(props) {
   const [user, setUser] = useState('');
 
   function handleSearch(){
-    // console.log('etet')
+    axios.get(`https://api.github.com/users/${user}/repos`).then(res => console.log(res.data))
   }
 
   return (
