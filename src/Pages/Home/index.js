@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import * as styled from './styled';
-import Axios from 'axios';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-export default function Home() {
+export default function Content() {
   const history = useHistory();
   const [user, setUser] = useState('');
+  const [error, setError] = useState(false);
 
   function handleSearch(){
-    Axios.get(`https://api.github.com/users/${user}/repos`).then(res =>{
+    axios.get(`https://api.github.com/users/${user}/repos`)
+    .then(res =>{
       const repositories = res.data;
       const repositoriesName = [];
 
@@ -17,16 +19,21 @@ export default function Home() {
       });
 
       localStorage.setItem('repositoriesName', JSON.stringify(repositoriesName));
-      history.push('/respositories')
-    }).catch(error => {
-      console.log('repo doenst existe!');
+      setError(false);
+      history.push('/respositories');
+    })
+    .catch(error => {
+      setError(true);
     });
   }
 
   return (
-  <styled.Container>
-    <styled.Input className="userInput" placeholder="User" value={user} onChange={e => setUser(e.target.value)} />
-    <styled.Button type="button" onClick={handleSearch}>Search</styled.Button>
-  </styled.Container>
+  <styled.HomeContainer>
+    <styled.Content>
+      <styled.Input className="userInput" placeholder="User" value={user} onChange={e => setUser(e.target.value)} />
+      <styled.Button type="button" onClick={handleSearch}>Search</styled.Button>
+    </styled.Content>
+    { error ? <styled.ErrrMsg>User not found!</styled.ErrrMsg> : '' } 
+  </styled.HomeContainer>
   )
 }

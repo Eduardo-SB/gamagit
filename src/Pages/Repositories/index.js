@@ -13,7 +13,7 @@ export default function Repositories() {
       setRepositories(repositoriesName);
       localStorage.clear();
     }else{
-      history.push("./");
+      history.push('./');
     }
   },[]);
 
