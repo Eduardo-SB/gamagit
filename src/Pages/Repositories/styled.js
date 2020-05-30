@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div `
   width: 100%;
@@ -23,4 +24,14 @@ export const ListItem = styled.li `
   margin: .5rem 0;
   background: #000;
   color: #fff;
+`;
+
+export const LinkHome = styled(Link) `
+  display: block;
+  width: 4rem;
+  text-align: center;
+  margin: 2rem auto;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
 `;

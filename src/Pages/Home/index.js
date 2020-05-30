@@ -19,7 +19,7 @@ export default function Home() {
       localStorage.setItem('repositoriesName', JSON.stringify(repositoriesName));
       history.push('/respositories')
     }).catch(error => {
-      console.log('repo doenst existe!')
+      console.log('repo doenst existe!');
     });
   }
 
